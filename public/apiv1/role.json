@@ -1,0 +1,29 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "id": 0,
+            "name": "管理员",
+            "tags": ["nice", "developer"],
+            "description": "管理员角色"
+        },
+        {
+            "id": 1,
+            "name": "会员",
+            "tags": ["loser", "nice"],
+            "description": "会员角色"
+        },
+        {
+            "id": 2,
+            "name": "CEO",
+            "tags": ["cool"],
+            "description": "CEO角色"
+        },
+        {
+            "id": 3,
+            "name": "普通用户",
+            "tags": ["teacher"],
+            "description": "普通用户角色"
+        }
+    ]
+}
