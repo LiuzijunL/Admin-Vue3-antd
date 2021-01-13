@@ -6,10 +6,10 @@ const state = {
         userName: 'Serati Jac',
         bio: '海纳百川，有容乃大',
         occupation: 'web开发',
-        relate: '凡点科技－某某某－某某某某某－某某技术部－WEB技术',
-        address: '湖北省武汉市',
-        mail: '836200461@qq.com',
-        mobile: '15871488995',
+        relate: '某某科技－某某某－某某某某某－某某技术部－WEB技术',
+        address: '某某省某某市',
+        mail: '83******61@qq.com',
+        mobile: '158****8995',
         gender: '1'
     }
 }

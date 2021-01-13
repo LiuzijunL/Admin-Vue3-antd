@@ -15,20 +15,6 @@ class Utils {
         return moment(datetime).format(value)
     }
     /**
-     * 默认头像地址
-     */
-    static userInfo = {
-        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png',
-        userName: 'Serati Jac',
-        bio: '海纳百川，有容乃大',
-        occupation: 'web开发',
-        relate: '凡点科技－某某某－某某某某某－某某技术部－WEB技术',
-        address: '湖北省武汉市',
-        mail: '836200461@qq.com',
-        mobile: '15871488995',
-        gender: 1
-    }
-    /**
      * 团队信息
      */
     static projectList = [
