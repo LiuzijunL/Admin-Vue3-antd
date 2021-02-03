@@ -6,7 +6,7 @@ const state = {
         userName: 'Serati Jac',
         bio: '海纳百川，有容乃大',
         occupation: 'web开发',
-        relate: '某某科技－某某某－某某某某某－某某技术部－WEB技术',
+        company: '某某科技－某某某－某某某某某－某某技术部－WEB技术',
         address: '某某省某某市',
         mail: '83******61@qq.com',
         mobile: '158****8995',

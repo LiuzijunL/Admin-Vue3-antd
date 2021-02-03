@@ -3,22 +3,22 @@
         <a-col :md="24" :lg="7" style="margin-bottom: 24px">
             <a-card>
                 <div class="account-avatarHolder">
-                    <a-avatar :src="$utils.userInfo.avatar" :size="104"></a-avatar>
-                    <div class="username">{{ $utils.userInfo.userName }}</div>
-                    <div>{{ $utils.userInfo.bio }}</div>
+                    <a-avatar :src="userInfo.avatar" :size="104"></a-avatar>
+                    <div class="username">{{ userInfo.userName }}</div>
+                    <div>{{ userInfo.bio }}</div>
                 </div>
                 <div class="account-detail">
                     <p>
                         <component :is="$antIcons['AuditOutlined']" />
-                        {{ $utils.userInfo.occupation }}
+                        {{ userInfo.occupation }}
                     </p>
                     <p>
                         <component :is="$antIcons['ApartmentOutlined']" />
-                        {{ $utils.userInfo.relate }}
+                        {{ userInfo.company }}
                     </p>
                     <p>
                         <component :is="$antIcons['EnvironmentOutlined']" />
-                        {{ $utils.userInfo.address }}
+                        {{ userInfo.address }}
                     </p>
                 </div>
                 <a-divider />
@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import axios from 'axios'
 export default {
     data() {
@@ -114,6 +115,11 @@ export default {
             listData: [],
             loading: false
         }
+    },
+    computed: {
+        ...mapState({
+            userInfo: state => state.app.userInfo
+        })
     },
     created(){
        this.onTabChange() 
