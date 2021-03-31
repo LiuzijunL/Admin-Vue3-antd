@@ -12,42 +12,56 @@
         </a-form-item>
         <a-form-item>
             <div class="other-center">
-                <a-checkbox v-model:checked="checked" @change="onChange">记住账号</a-checkbox>
+                <a-checkbox v-model:checked="checked">记住账号</a-checkbox>
                 <a-button type="link">忘记密码</a-button>
             </div>
         </a-form-item>
         <a-form-item>
-            <a-button type="primary" html-type="submit" block size="large">Login</a-button>
+            <a-button type="primary" html-type="submit" block size="large" :loading="loading">Login</a-button>
         </a-form-item>
     </a-form>
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 let that;
 export default {
     data() {
         return {
             form: { name: '', password: '' },
             wrapperCol: { span: 24 },
+            checked: false
         }
     },
     mounted(){
         that = this
     },
     setup(){
+        let loading = ref(false)
         const router = useRouter()
-        const login = (values) => {
-            let { name, password } = values
-            if(name !== 'admin' || password !== 'admin'){
-                return that.$message.error('账户或密码错误')
+        const login = async (values) => {
+            try {
+                loading.value = true
+                let password = that.$utils.Md5ChangePass(values.password)
+                values = Object.assign({}, values, { password })
+                const { code, msg, data } = await that.$api.user.login(values)
+                if(code === 0){
+                    that.$message.success('登录成功')
+                    localStorage.setItem('x-admin', JSON.stringify(data))
+                    router.push('/')
+                }else{
+                    that.$message.error(msg)
+                }
+                loading.value = false
+            } catch (err) {
+                loading.value = false
+                that.$message.error(`异常：${err}`)
             }
-            that.$message.success('登录成功')
-            localStorage.setItem('x-admin', 'admin')
-            router.push('/')
         }
         return {
-            login
+            login,
+            loading
         }
     }
 }

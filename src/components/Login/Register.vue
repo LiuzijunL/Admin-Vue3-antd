@@ -1,7 +1,7 @@
 <template>
     <a-form :model="form" :wrapperCol="wrapperCol" @finish="handleFinish">
-        <a-form-item :rules="{ required: true, message: '请输入手机号'}" name="mobile">
-            <a-input v-model:value="form.mobile" size="large" autocomplete="off" maxlength="11" placeholder="手机号">
+        <a-form-item :rules="{ required: true, message: '请输入手机号'}" name="name">
+            <a-input v-model:value="form.name" size="large" autocomplete="off" maxlength="11" placeholder="手机号">
                 <template #prefix><component :is="$antIcons['MobileOutlined']" /></template>
             </a-input>
         </a-form-item>
@@ -39,7 +39,7 @@
             </a-radio-group>
         </a-form-item>
         <a-form-item>
-            <a-button type="primary" html-type="submit" block size="large">Register</a-button>
+            <a-button type="primary" html-type="submit" block size="large" :loading="loading">Register</a-button>
         </a-form-item>
     </a-form>
 </template>
@@ -49,12 +49,32 @@ export default {
     data() {
         return {
             form: { gender: 1 },
-            wrapperCol: { span: 24 }
+            wrapperCol: { span: 24 },
+            loading: false
         }
     },
     methods: {
-        handleFinish(){
-            console.log(this.form)
+        async handleFinish(){
+            try {
+                if(this.loading) return
+                let { chekPassword, password } = this.form
+                if(chekPassword !== password){
+                    return this.$message.error('两次密码不一致')
+                }
+                this.loading = true
+                let params = {...this.form}
+                delete params.chekPassword
+                params.password = this.$utils.Md5ChangePass(password)
+                const { code, msg, data } = await this.$api.user.register(params)
+                this.$message[code === 0 ? 'success' : 'error'](msg)
+                if(code === 0){
+                    console.log(data)
+                }
+                this.loading = false
+            } catch (err) {
+                this.loading = false
+                this.$message.error(`异常：${err}`)
+            }
         },
         handleSmsCode(){
             this.$message.info('验证码：8888')

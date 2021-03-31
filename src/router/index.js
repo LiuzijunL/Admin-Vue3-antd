@@ -71,6 +71,11 @@ const router = createRouter({
                     ]
                 },
                 {
+                    path: '/account/writer',
+                    name: '写文章',
+                    component: () => import('@/pages/Account/Writer.vue')
+                },
+                {
                     path: '/system/user-list',
                     name: '账户管理',
                     component: () => import('@/pages/System/UserList.vue')

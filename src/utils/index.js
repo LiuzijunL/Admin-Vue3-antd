@@ -1,5 +1,5 @@
-'use sitic'
 import moment from 'moment'
+import { HmacMD5 } from 'crypto-js/crypto-js'
 
 class Utils {
     /**
@@ -13,6 +13,15 @@ class Utils {
         if(!datetime) return ''
         if(isPase) return moment(datetime).valueOf()
         return moment(datetime).format(value)
+    }
+    /**
+     * md5加密
+     * @param {*} password
+     */
+    static Md5ChangePass(password) {
+        const Passphrase = 'listen'
+        let hash = HmacMD5(password, Passphrase).toString()
+        return hash
     }
     /**
      * 团队信息

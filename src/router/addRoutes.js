@@ -36,6 +36,11 @@ const menuItems = [
                 path: '/account/settings',
                 name: '个人设置',
                 filePath: '/account/settings'
+            },
+            {
+                path: '/account/writer',
+                name: '写文章',
+                filePath: '/account/writer'
             }
         ]
     },

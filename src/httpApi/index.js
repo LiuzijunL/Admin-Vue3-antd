@@ -6,7 +6,7 @@ const install = Vue => {
 
     install.installed = true
 
-    Object.defineProperties(Vue.prototype, {
+    Object.defineProperties(Vue.config.globalProperties, {
         //此处挂载
         $api: {
             get() {

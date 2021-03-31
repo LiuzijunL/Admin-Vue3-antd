@@ -1,9 +1,11 @@
+import 'babel-polyfill'
 import { createApp } from 'vue'
 import Antd from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 // import { stateSymbol, createState } from './store/comm'
+import api from '@/httpApi'
 import Utils from './utils'
 import * as antIcons from '@ant-design/icons-vue'
 import 'ant-design-vue/dist/antd.css'
@@ -19,7 +21,7 @@ app.config.globalProperties.$antIcons = antIcons
 
 app.config.globalProperties.$utils = Utils
 
-app.use(router).use(store).use(Antd)
+app.use(router).use(store).use(Antd).use(api)
 // .provide(stateSymbol, createState())
 
 app.mount('#app')
